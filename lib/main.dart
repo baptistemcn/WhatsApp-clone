@@ -52,10 +52,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           MenuSection(),
-          Container(
-            height: 100,
-            color: Colors.red,
-          ),
+          FavoriteSection(),
           Expanded(
             child: Container(
               color: Colors.green,
@@ -100,6 +97,122 @@ class MenuSection extends StatelessWidget {
               );
             }).toList(),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class FavoriteSection extends StatelessWidget {
+  FavoriteSection({Key? key}) : super(key: key);
+
+  final List favoriteContacts = [
+    {
+      "name": "Alla",
+      "profile": "assets/images/avatar/a1.jpg",
+    },
+    {
+      "name": "July",
+      "profile": "assets/images/avatar/a2.jpg",
+    },
+    {
+      "name": "Kler",
+      "profile": "assets/images/avatar/a3.jpg",
+    },
+    {
+      "name": "Morelle",
+      "profile": "assets/images/avatar/a4.jpg",
+    },
+    {
+      "name": "Mikler",
+      "profile": "assets/images/avatar/a5.jpg",
+    },
+    {
+      "name": "Helen",
+      "profile": "assets/images/avatar/a6.jpg",
+    },
+    {
+      "name": "Steve",
+      "profile": "assets/images/avatar/a7.jpg",
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: dBlack,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15),
+        decoration: const BoxDecoration(
+          color: dGreen,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(40),
+            topLeft: Radius.circular(40),
+          ),
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 15),
+                  child: Text(
+                    "Favorite contacts",
+                    style: GoogleFonts.inter(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const IconButton(
+                  icon: Icon(
+                    Icons.more_horiz,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  onPressed: null,
+                ),
+              ],
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: favoriteContacts.map((favorite) {
+                  return Container(
+                    margin: const EdgeInsets.only(left: 15),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          height: 70,
+                          width: 70,
+                          decoration: const BoxDecoration(
+                            color: dWhite,
+                            shape: BoxShape.circle,
+                          ),
+                          child: CircleAvatar(
+                            radius: 20,
+                            backgroundImage: AssetImage(favorite['profile']),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          favorite['name'],
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+            )
+          ],
         ),
       ),
     );

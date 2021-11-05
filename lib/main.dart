@@ -49,6 +49,23 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      body: Column(
+        children: [
+          Container(
+            height: 100,
+            color: Colors.blue,
+          ),
+          Container(
+            height: 100,
+            color: Colors.red,
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.green,
+            ),
+          )
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(

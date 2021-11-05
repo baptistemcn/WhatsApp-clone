@@ -29,7 +29,33 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("WhatsApp"),
+        backgroundColor: dBlack,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.menu,
+            color: dWhite,
+            size: 30,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: dWhite,
+              size: 30,
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.edit_outlined,
+          size: 20,
+        ),
+        backgroundColor: dGreen,
       ),
     );
   }

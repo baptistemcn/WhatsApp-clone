@@ -51,10 +51,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            height: 100,
-            color: Colors.blue,
-          ),
+          MenuSection(),
           Container(
             height: 100,
             color: Colors.red,
@@ -73,6 +70,37 @@ class HomePage extends StatelessWidget {
           size: 20,
         ),
         backgroundColor: dGreen,
+      ),
+    );
+  }
+}
+
+class MenuSection extends StatelessWidget {
+  final List menuItems = ["Messages", "Online", "Groups", "Calls"];
+
+  MenuSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: dBlack,
+      height: 100,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Row(
+            children: menuItems.map((item) {
+              return Container(
+                margin: const EdgeInsets.only(right: 55),
+                child: Text(
+                  item,
+                  style: GoogleFonts.inter(fontSize: 29, color: Colors.white60),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
       ),
     );
   }

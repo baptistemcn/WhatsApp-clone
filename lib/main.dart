@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import "package:flutter/material.dart";
+import "package:google_fonts/google_fonts.dart";
 
 const dGreen = Color(0xFF2ac0a6);
 const dWhite = Colors.white;
@@ -54,9 +54,7 @@ class HomePage extends StatelessWidget {
           MenuSection(),
           FavoriteSection(),
           Expanded(
-            child: Container(
-              color: Colors.green,
-            ),
+            child: MessageSection(),
           )
         ],
       ),
@@ -194,12 +192,12 @@ class FavoriteSection extends StatelessWidget {
                           ),
                           child: CircleAvatar(
                             radius: 20,
-                            backgroundImage: AssetImage(favorite['profile']),
+                            backgroundImage: AssetImage(favorite["profile"]),
                           ),
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          favorite['name'],
+                          favorite["name"],
                           style: GoogleFonts.inter(
                             color: Colors.white,
                             fontSize: 14,
@@ -214,6 +212,167 @@ class FavoriteSection extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MessageSection extends StatelessWidget {
+  MessageSection({Key? key}) : super(key: key);
+
+  final List messages = [
+    {
+      "senderProfile": "assets/images/avatar/a1.jpg",
+      "senderName": "Sapphire",
+      "content": "Multi-lateral heuristic local",
+      "unRead": 0,
+      "date": "2:47"
+    },
+    {
+      "senderProfile": "assets/images/avatar/a2.jpg",
+      "senderName": "Reube",
+      "content": "Object-based content-based",
+      "unRead": 1,
+      "date": "10:57"
+    },
+    {
+      "senderProfile": "assets/images/avatar/a3.jpg",
+      "senderName": "Analiese",
+      "content": "Triple-buffered even-keeled",
+      "unRead": 1,
+      "date": "14:03"
+    },
+    {
+      "senderProfile": "assets/images/avatar/a4.jpg",
+      "senderName": "Marget",
+      "content": "Public-key scalable open",
+      "unRead": 0,
+      "date": "20:37"
+    },
+    {
+      "senderProfile": "assets/images/avatar/a5.jpg",
+      "senderName": "Arnoldo",
+      "content": "Horizontal zero tolerance",
+      "unRead": 0,
+      "date": "12:44"
+    },
+    {
+      "senderProfile": "assets/images/avatar/a6.jpg",
+      "senderName": "Garfield",
+      "content": "Devolved non-volatile initiative",
+      "unRead": 0,
+      "date": "20:52"
+    },
+    {
+      "senderProfile": "assets/images/avatar/a7.jpg",
+      "senderName": "Lief",
+      "content": "Adaptive homogeneous",
+      "unRead": 1,
+      "date": "23:29"
+    }
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: messages.map((message) {
+          return InkWell(
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const ChatPage(),
+              //   ),
+              // );
+            },
+            splashColor: dGreen,
+            child: Container(
+              padding: const EdgeInsets.only(left: 30, right: 10, top: 15),
+              child: Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 23),
+                    width: 62,
+                    height: 62,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(message['senderProfile']),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 25),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    message['senderName'],
+                                    style: GoogleFonts.inter(
+                                      color: Colors.grey,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  Wrap(children: [
+                                    Text(
+                                      message['content'],
+                                      style: GoogleFonts.inter(
+                                        color: Colors.black87,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ]),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Text(message['date']),
+                                message['unRead'] != false
+                                    ? Container(
+                                        padding: const EdgeInsets.all(5),
+                                        decoration: const BoxDecoration(
+                                          color: dGreen,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Text(
+                                          message['unRead'].toString(),
+                                          style: GoogleFonts.inter(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      )
+                                    : Container(),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          color: Colors.grey[400],
+                          height: 0.5,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }
